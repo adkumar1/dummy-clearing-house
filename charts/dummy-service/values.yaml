@@ -44,21 +44,28 @@ service:
 
 
 ingress:
-  enabled: false
-  className: ""
+ingress:
+  enabled: true
+  className: "nginx"
+  issuer: "letsencrypt-prod"
+  domain: ""
   annotations:
-    #kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx
+
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: ""
+    - host: dummy.dev.demo.catena-x.net
       paths:
         - path: /
-          pathType: ImplementationSpecific
+          pathType: Prefix
+
+
   tls:
-    - tlsName: chart-example-tls
+    - tlsName: dummy.dev.demo.catena-x.net-tls
       hosts:
-        - chart-example.local
+        - dummy.dev.demo.catena-x.net
 
 
     
