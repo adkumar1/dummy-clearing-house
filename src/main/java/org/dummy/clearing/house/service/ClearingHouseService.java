@@ -16,6 +16,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 
@@ -37,10 +38,18 @@ public class ClearingHouseService implements ApiApiDelegate {
     private TokenManager tokenManager;
 
     @SuppressWarnings("unchecked")
+    @Async
     public ResponseEntity<Void> apiCredentialsPost(
             VerifiableCredentialDto verifiableCredentialDto,
             String externalId) {
 
+        sendDataToPortal(verifiableCredentialDto, externalId);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @Async
+    private void sendDataToPortal(VerifiableCredentialDto verifiableCredentialDto,
+                                  String externalId) {
         // Send response back to Portal using feign
         String token = "Bearer "+tokenManager.getAccessTokenString();
         log.info("The token fetched for Portal keycloak: \n"+token+"\n\n");
@@ -52,8 +61,6 @@ public class ClearingHouseService implements ApiApiDelegate {
         } else if(verifiableCredentialDto.getType().contains("ServiceOffering")) {
             portalProxy.postPortalServiceOfferingResponse(portalDto, token);
         }
-
-        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     private PortalDto createPortalRequestObejct(VerifiableCredentialDto verifiableCredentialDto) {
