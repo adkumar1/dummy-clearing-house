@@ -40,7 +40,7 @@ jobs:
         uses: docker/login-action@v1
         with:
          REGISTRY: ghcr.io
-         #username: ${{ github.actor }}
+         username: ${{ github.actor }}
          password: ${{ secrets.DUMMYSECRET }}
          
       - name: Build and push
