@@ -62,8 +62,7 @@ public class JwtSecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().anyRequest().permitAll().and()
-                .csrf().disable();
+                .csrf().disable().authorizeRequests().anyRequest().authenticated();
     }
 }
 
