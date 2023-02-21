@@ -1,0 +1,147 @@
+openapi: 3.0.0
+info:
+  title: Clearing House API proposal
+  version: 3.0.0
+  description: Clearing House API proposal for SD-Factory
+paths:
+  /api/credentials:
+    post:
+      tags:
+        - VerifiableCredentials
+      summary: Sends Verifiable Credential for verification and approval
+      description: >-
+        SD-Factory sends VC to the CH for verification at the Complience
+        Service and passes a callback URL to the CH to report the status
+      parameters:
+        - in: query
+          name: externalId
+          description: external ID
+          schema:
+            type: string
+      requestBody:
+        description: The verifiable credential input data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifiableCredentialDto'
+            examples:
+              vc:
+                value:
+                  id: http://example.edu/credentials/3732
+                  "@context":
+                    - https://www.w3.org/2018/credentials/v1
+                    - https://www.w3.org/2018/credentials/examples/v1
+                  type:
+                    - University-Degree-Credential, VerifiableCredential
+                  issuer: did:example:76e12ec712ebc6f1c221ebfeb1f
+                  issuanceDate: '2019-06-16T18:56:59Z'
+                  expirationDate: '2019-06-17T18:56:59Z'
+                  credentialSubject:
+                    college: Test-University
+                  credentialStatus:
+                    id: https://example.com/credentials/status/3#94567
+                    type: StatusList2021Entry
+                    statusPurpose: revocation
+                    statusListIndex: '94567'
+                    statusListCredential: https://example.com/credentials/status/3
+                  proof:
+                    type: Ed25519Signature2018
+                    created: '2021-11-17T22:20:27Z'
+                    proofPurpose: assertionMethod
+                    verificationMethod: did:example:76e12ec712ebc6f1c221ebfeb1f#key-1
+                    jws: eyJiNjQiOmZhbHNlLCJjcml0IjpbImI2NCJdLCJhbGciOiJFZERTQSJ9..JNerzfrK46Mq4XxYZEnY9xOK80xsEaWCLAHuZsFie1-NTJD17wWWENn_DAlA_OwxGF5dhxUJ05P6Dm8lcmF5Cg
+        required: true
+      responses:
+        '202':
+          description: The Verifiable Credential is accepted
+components:
+  schemas:
+    VerifiableCredentialDto:
+      properties:
+        '@context':
+          items:
+            type: string
+          type: array
+        credentialStatus:
+          $ref: '#/components/schemas/CredentialStatus'
+        credentialSubject:
+          additionalProperties:
+            $ref: '#/components/schemas/Any'
+          type: object
+        expirationDate:
+          type: string
+          nullable: true
+        id:
+          type: string
+          nullable: true
+        issuanceDate:
+          type: string
+        issuer:
+          type: string
+        proof:
+          $ref: '#/components/schemas/LdProofDto'
+        type:
+          items:
+            type: string
+          type: array
+      required:
+        - '@context'
+        - type
+        - issuer
+        - issuanceDate
+        - credentialSubject
+      type: object
+    CredentialStatus:
+      properties:
+        credentialType:
+          type: string
+        index:
+          type: string
+        listUrl:
+          type: string
+        statusId:
+          type: string
+        statusPurpose:
+          type: string
+      required:
+        - statusId
+        - index
+        - listUrl
+      type: object
+    Any:
+      properties: {}
+      type: object
+    LdProofDto:
+      properties:
+        challenge:
+          type: string
+          nullable: true
+        created:
+          type: string
+        creator:
+          type: string
+          nullable: true
+        domain:
+          type: string
+          nullable: true
+        jws:
+          type: string
+          nullable: true
+        nonce:
+          type: string
+          nullable: true
+        proofPurpose:
+          type: string
+        proofValue:
+          type: string
+          nullable: true
+        type:
+          type: string
+        verificationMethod:
+          type: string
+      required:
+        - type
+        - created
+        - proofPurpose
+        - verificationMethod
+      type: object
