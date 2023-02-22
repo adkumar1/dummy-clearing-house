@@ -93,20 +93,20 @@ components:
       type: object
     CredentialStatus:
       properties:
-        credentialType:
+        type:
           type: string
-        index:
+        statusListIndex:
           type: string
-        listUrl:
+        statusListCredential:
           type: string
-        statusId:
+        id:
           type: string
         statusPurpose:
           type: string
       required:
-        - statusId
-        - index
-        - listUrl
+        - id
+        - statusListIndex
+        - statusListCredential
       type: object
     Any:
       properties: {}
