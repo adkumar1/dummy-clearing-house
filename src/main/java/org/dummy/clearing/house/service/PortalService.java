@@ -27,7 +27,6 @@ public class PortalService {
                                  String externalId) {
         // Send response back to Portal using feign
         String token = "Bearer "+tokenManager.getAccessTokenString();
-        log.info("The token fetched for Portal keycloak: \n"+token+"\n\n");
 
         PortalDto portalDto = createPortalRequestObejct(externalId, verifiableCredentialDto);
 
