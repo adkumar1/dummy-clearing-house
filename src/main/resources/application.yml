@@ -25,4 +25,4 @@ portal:
   auth-server-url: https://centralidp.int.demo.catena-x.net/auth
   realm: CX-Central
   clientId: sa-cl2-02
-  clientSecret:
+  clientSecret: c7uhxqYONsR1SG5QO2lhh06Wzn1whifH
