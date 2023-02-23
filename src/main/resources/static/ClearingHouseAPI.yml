@@ -55,6 +55,11 @@ paths:
         '202':
           description: The Verifiable Credential is accepted
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     VerifiableCredentialDto:
       properties:
@@ -145,3 +150,5 @@ components:
         - proofPurpose
         - verificationMethod
       type: object
+security:
+  - bearerAuth: []         # use the same name as above

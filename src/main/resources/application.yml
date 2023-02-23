@@ -26,3 +26,6 @@ portal:
   realm: CX-Central
   clientId: sa-cl2-02
   clientSecret: c7uhxqYONsR1SG5QO2lhh06Wzn1whifH
+
+compliance-json:
+  file-path: classpath:compliance.json
