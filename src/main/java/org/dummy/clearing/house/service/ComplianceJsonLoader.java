@@ -25,7 +25,7 @@ public class ComplianceJsonLoader {
     public void init() throws IOException {
         File jsonFile = ResourceUtils.getFile(filePath);
         ObjectMapper jsonMapper = new ObjectMapper();
-        complianceServiceJson = jsonMapper.readValue(jsonFile, JsonNode.class);
+        complianceServiceJson = jsonMapper.readTree(getClass().getClassLoader().getResourceAsStream("compliance.json"));
     }
 
     public JsonNode getComplianceServiceJson() {

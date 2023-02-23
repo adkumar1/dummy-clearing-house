@@ -10,7 +10,6 @@ import org.dummy.clearing.house.proxy.PortalProxy;
 import org.keycloak.admin.client.token.TokenManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -28,8 +27,10 @@ public class PortalService {
     @Autowired
     private ComplianceJsonLoader complianceJsonLoader;
 
+    @Autowired
+    private ObjectMapper mapper;
 
-    @Async
+
     public void sendDataToPortal(VerifiableCredentialDto verifiableCredentialDto,
                                  String externalId) {
         // Send response back to Portal using feign
@@ -52,7 +53,6 @@ public class PortalService {
     private PortalDto createPortalRequestObejct(String externalId,
                                                 VerifiableCredentialDto verifiableCredentialDto,
                                                 JsonNode complianceJsonNode) {
-        ObjectMapper mapper = new ObjectMapper();
         String sdDocumentDtoString = "";
         try {
 

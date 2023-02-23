@@ -9,7 +9,13 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.TaskScheduler;
 import org.springframework.stereotype.Service;
+
+import java.time.Duration;
+import java.time.Instant;
+import java.time.temporal.TemporalAmount;
+import java.time.temporal.TemporalUnit;
 
 @Service
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -20,12 +26,15 @@ public class ClearingHouseService implements ApiApiDelegate {
     @Autowired
     private PortalService portalService;
 
+    @Autowired
+    private TaskScheduler taskScheduler;
+
     @SuppressWarnings("unchecked")
     public ResponseEntity<Void> apiCredentialsPost(
             VerifiableCredentialDto verifiableCredentialDto,
             String externalId) {
 
-        portalService.sendDataToPortal(verifiableCredentialDto, externalId);
+        taskScheduler.schedule(() -> portalService.sendDataToPortal(verifiableCredentialDto, externalId), Instant.now().plus(Duration.ofSeconds(60)));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

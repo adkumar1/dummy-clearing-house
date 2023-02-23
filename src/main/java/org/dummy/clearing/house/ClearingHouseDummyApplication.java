@@ -8,7 +8,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
 @EnableFeignClients
-@EnableAsync
 public class ClearingHouseDummyApplication {
 
     public static void main(String[] args) {
