@@ -14,7 +14,7 @@ RUN ./mvnw clean install -Dmaven.test.skip=true
 
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-FROM bellsoft/liberica-openjdk-alpine:17.0.4.1-1
+FROM bellsoft/liberica-openjdk-alpine:17.2.4.1-1
 RUN apk update && apk upgrade
 ARG DEPENDENCY=/tx-clearing-house-mimic/target/dependency
 
