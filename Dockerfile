@@ -1,4 +1,4 @@
-FROM openjdk:17 as build
+FROM maven:3.8.7-eclipse-temurin-17 AS build
 
 COPY . /tx-clearing-house-mimic/
 
@@ -14,7 +14,8 @@ RUN ./mvnw clean install -Dmaven.test.skip=true
 
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-FROM bellsoft/liberica-openjdk-alpine:17.0.4.1-1
+FROM eclipse-temurin:17.0.6_10-jdk-alpine
+
 RUN apk update && apk upgrade
 ARG DEPENDENCY=/tx-clearing-house-mimic/target/dependency
 
