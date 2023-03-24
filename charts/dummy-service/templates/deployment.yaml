@@ -40,11 +40,11 @@ spec:
               
               
           env:
-          - name: PORTAL_CLIENTID
+          - name: PORTAL_CLIENTSECRET
             valueFrom: 
               secretKeyRef:
                 name: {{ include "dummy-service.applicationSecret.name" . }}
-                key: ClientID
+                key: ClientSecret
             
             
           #livenessProbe:
