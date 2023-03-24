@@ -68,6 +68,9 @@ ingress:
         - dummy.dev.demo.catena-x.net
 
 
+dummyservice:
+  secret:
+    clientSecret: "<path:essential-services/data/dummy-service#clientSecret>"
     
 resources:
   limits:

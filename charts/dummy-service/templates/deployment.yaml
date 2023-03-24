@@ -37,6 +37,16 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
+              
+              
+          env:
+          - name: PORTAL_CLIENTID
+            valueFrom: 
+              secretKeyRef:
+                name: {{ include "dummy-service.applicationSecret.name" . }}
+                key: ClientID
+            
+            
           #livenessProbe:
           #  httpGet:
           #    path: /

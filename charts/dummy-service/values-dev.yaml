@@ -21,7 +21,11 @@ ingress:
       hosts:
         - dummy.dev.demo.catena-x.net
 
-      
+dummyservice:
+  secret:
+    clientSecret: "<path:essential-services/data/dummy-service#clientSecret>"
+
+
 # -- Pod resources requests and limits configuration
 resources:
   limits:
