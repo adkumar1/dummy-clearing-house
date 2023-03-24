@@ -49,16 +49,16 @@ spec:
               secretKeyRef:
                 name: {{ include "dummy-service.applicationSecret.name" . }}
                 key: ClientID        
-          - name: PORTAL_REALM
-            valueFrom: 
-              secretKeyRef:
-                name: {{ include "dummy-service.applicationSecret.name" . }}
-                key: realm                
-          - name: PORTAL_URL
-            valueFrom: 
-              secretKeyRef:
-                name: {{ include "dummy-service.applicationSecret.name" . }}
-                key: portalurl       
+          #- name: PORTAL_REALM
+          #  valueFrom: 
+          #    secretKeyRef:
+          #      name: {{ include "dummy-service.applicationSecret.name" . }}
+          #      key: realm                
+          #- name: PORTAL_URL
+          #  valueFrom: 
+          #    secretKeyRef:
+          #      name: {{ include "dummy-service.applicationSecret.name" . }}
+          #      key: portalurl       
           #- name: PORTAL_AUTH-SERVER-URL
           #  valueFrom: 
           #    secretKeyRef:

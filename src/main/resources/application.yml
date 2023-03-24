@@ -20,9 +20,9 @@ keycloak:
   bearer-only: true
 
 portal:
-  #url: https://portal-backend.int.demo.catena-x.net
+  url: https://portal-backend.int.demo.catena-x.net
   auth-server-url: https://centralidp.int.demo.catena-x.net/auth
-  #realm: CX-Central
+  realm: CX-Central
   #clientId: sa-cl2-02
   #clientSecret: c7uhxqYONsR1SG5QO2lhh06Wzn1whifH
 
