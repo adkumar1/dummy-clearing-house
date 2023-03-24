@@ -54,11 +54,11 @@ spec:
           #    secretKeyRef:
           #      name: {{ include "dummy-service.applicationSecret.name" . }}
           #      key: realm                
-          #- name: PORTAL_URL
-          #  valueFrom: 
-          #    secretKeyRef:
-          #      name: {{ include "dummy-service.applicationSecret.name" . }}
-          #      key: portalurl       
+          - name: PORTAL_URL
+            valueFrom: 
+              secretKeyRef:
+                name: {{ include "dummy-service.applicationSecret.name" . }}
+                key: portalurl       
           #- name: PORTAL_AUTH-SERVER-URL
           #  valueFrom: 
           #    secretKeyRef:
@@ -69,11 +69,11 @@ spec:
           #    secretKeyRef:
           #      name: {{ include "dummy-service.applicationSecret.name" . }}
           #      key: auth-server-url            
-          #- name: KEYCLOAK_REALM
-          #  valueFrom: 
-          #    secretKeyRef:
-          #      name: {{ include "dummy-service.applicationSecret.name" . }}
-          #      key: realm             
+          - name: KEYCLOAK_REALM
+            valueFrom: 
+              secretKeyRef:
+                name: {{ include "dummy-service.applicationSecret.name" . }}
+                key: realm             
           #- name: KEYCLOAK_RESOURCE
           #  valueFrom: 
           #    secretKeyRef:

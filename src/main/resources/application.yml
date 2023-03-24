@@ -14,13 +14,13 @@ springdoc:
 ## Auto setup protected with Keyclock
 keycloak:
   auth-server-url: https://centralidp.int.demo.catena-x.net/auth
-  realm: CX-Central
+  #realm: CX-Central
   resource: Cl2-CX-Portal
   use-resource-role-mappings: true
   bearer-only: true
 
 portal:
-  url: https://portal-backend.int.demo.catena-x.net
+  #url: https://portal-backend.int.demo.catena-x.net
   auth-server-url: https://centralidp.int.demo.catena-x.net/auth
   realm: CX-Central
   #clientId: sa-cl2-02
