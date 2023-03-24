@@ -37,21 +37,18 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
-              
-              
+                          
           env:
           - name: PORTAL_CLIENTSECRET
             valueFrom: 
               secretKeyRef:
                 name: {{ include "dummy-service.applicationSecret.name" . }}
-                key: ClientSecret
-            
+                key: ClientSecret     
           - name: PORTAL_CLIENTID
             valueFrom: 
               secretKeyRef:
                 name: {{ include "dummy-service.applicationSecret.name" . }}
-                key: ClientID
-                
+                key: ClientID        
           - name: PORTAL_REALM
             valueFrom: 
               secretKeyRef:
@@ -61,30 +58,27 @@ spec:
             valueFrom: 
               secretKeyRef:
                 name: {{ include "dummy-service.applicationSecret.name" . }}
-                key: portalurl
-                
-          - name: PORTAL_AUTH-SERVER-URL
-            valueFrom: 
-              secretKeyRef:
-                name: {{ include "dummy-service.applicationSecret.name" . }}
-                key: auth-server-url
-          - name: KEYCLOAK_AUTH-SERVER-URL
-            valueFrom: 
-              secretKeyRef:
-                name: {{ include "dummy-service.applicationSecret.name" . }}
-                key: auth-server-url
-                
-          - name: KEYCLOAK_REALM
-            valueFrom: 
-              secretKeyRef:
-                name: {{ include "dummy-service.applicationSecret.name" . }}
-                key: realm
-                
-          - name: KEYCLOAK_RESOURCE
-            valueFrom: 
-              secretKeyRef:
-                name: {{ include "dummy-service.applicationSecret.name" . }}
-                key: resource
+                key: portalurl       
+          #- name: PORTAL_AUTH-SERVER-URL
+          #  valueFrom: 
+          #    secretKeyRef:
+          #      name: {{ include "dummy-service.applicationSecret.name" . }}
+          #      key: auth-server-url
+          #- name: KEYCLOAK_AUTH-SERVER-URL
+          #  valueFrom: 
+          #    secretKeyRef:
+          #      name: {{ include "dummy-service.applicationSecret.name" . }}
+          #      key: auth-server-url            
+          #- name: KEYCLOAK_REALM
+          #  valueFrom: 
+          #    secretKeyRef:
+          #      name: {{ include "dummy-service.applicationSecret.name" . }}
+          #      key: realm             
+          #- name: KEYCLOAK_RESOURCE
+          #  valueFrom: 
+          #    secretKeyRef:
+          #      name: {{ include "dummy-service.applicationSecret.name" . }}
+          #      key: resource
                 
   
           #livenessProbe:

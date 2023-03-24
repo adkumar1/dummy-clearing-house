@@ -13,9 +13,9 @@ springdoc:
 
 ## Auto setup protected with Keyclock
 keycloak:
-  #auth-server-url: https://centralidp.int.demo.catena-x.net/auth
-  #realm: CX-Central
-  #resource: Cl2-CX-Portal
+  auth-server-url: https://centralidp.int.demo.catena-x.net/auth
+  realm: CX-Central
+  resource: Cl2-CX-Portal
   use-resource-role-mappings: true
   bearer-only: true
 
