@@ -4,6 +4,7 @@ COPY . /tx-clearing-house-mimic/
 
 WORKDIR /tx-clearing-house-mimic
 
+RUN mvn clean install -Dmaven.test.skip=true
 
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
@@ -22,4 +23,3 @@ ENTRYPOINT ["java", "-cp", "app:app/lib/*", "org.dummy.clearing.house.ClearingHo
 EXPOSE 8080
 
 HEALTHCHECK CMD curl --fail http://localhost:8080 || exit 1   
-
