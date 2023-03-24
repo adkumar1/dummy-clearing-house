@@ -59,11 +59,11 @@ spec:
               secretKeyRef:
                 name: {{ include "dummy-service.applicationSecret.name" . }}
                 key: portalurl       
-          #- name: PORTAL_AUTH-SERVER-URL
-          #  valueFrom: 
-          #    secretKeyRef:
-          #      name: {{ include "dummy-service.applicationSecret.name" . }}
-          #      key: auth-server-url
+          - name: PORTAL_AUTH-SERVER-URL
+            valueFrom: 
+              secretKeyRef:
+                name: {{ include "dummy-service.applicationSecret.name" . }}
+                key: auth-server-url
           #- name: KEYCLOAK_AUTH-SERVER-URL
           #  valueFrom: 
           #    secretKeyRef:
