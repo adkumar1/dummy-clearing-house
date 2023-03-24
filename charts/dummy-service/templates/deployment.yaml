@@ -49,11 +49,11 @@ spec:
               secretKeyRef:
                 name: {{ include "dummy-service.applicationSecret.name" . }}
                 key: ClientID        
-          #- name: PORTAL_REALM
-          #  valueFrom: 
-          #    secretKeyRef:
-          #      name: {{ include "dummy-service.applicationSecret.name" . }}
-          #      key: realm                
+          - name: PORTAL_REALM
+            valueFrom: 
+              secretKeyRef:
+                name: {{ include "dummy-service.applicationSecret.name" . }}
+                key: realm                
           - name: PORTAL_URL
             valueFrom: 
               secretKeyRef:
@@ -74,11 +74,11 @@ spec:
               secretKeyRef:
                 name: {{ include "dummy-service.applicationSecret.name" . }}
                 key: realm             
-          #- name: KEYCLOAK_RESOURCE
-          #  valueFrom: 
-          #    secretKeyRef:
-          #      name: {{ include "dummy-service.applicationSecret.name" . }}
-          #      key: resource
+          - name: KEYCLOAK_RESOURCE
+            valueFrom: 
+              secretKeyRef:
+                name: {{ include "dummy-service.applicationSecret.name" . }}
+                key: resource
                 
   
           #livenessProbe:
