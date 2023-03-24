@@ -68,6 +68,21 @@ ingress:
         - dummy.dev.demo.catena-x.net
 
 
+dummy-service:
+  secret:
+    # -- JWK Set URI
+    portalurl: ""
+    # -- Custodian wallet client id
+    clientId: ""
+    # -- Custodian wallet client secret
+    clientSecret: ""
+    # -- Keycloak URL
+    authServerUrl: ""
+    # -- Keycloak Realm detail
+    realm: ""
+    # -- Keycloak Resource detail
+    resource: ""
+
     
 resources:
   limits:
