@@ -21,7 +21,16 @@ ingress:
       hosts:
         - clearing-house-beta.dev.demo.catena-x.net
 
-      
+ 
+dummyservice:
+  secret:
+    clientSecret: "<path:essential-services/data/dummy-service-beta#clientSecret>"
+    portalurl: "<path:essential-services/data/dummy-service-beta#portal-url>"
+    clientId: "<path:essential-services/data/dummy-service-beta#clientId>"
+    authServerUrl: "<path:essential-services/data/dummy-service-beta#auth-server-url>"
+    realm: "<path:essential-services/data/dummy-service-beta#realm>"
+    resource: "<path:essential-services/data/dummy-service-beta#resource>"
+    
 # -- Pod resources requests and limits configuration
 resources:
   limits:

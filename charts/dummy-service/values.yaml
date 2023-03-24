@@ -44,8 +44,7 @@ service:
 
 
 ingress:
-ingress:
-  enabled: true
+  enabled: false
   className: "nginx"
   issuer: "letsencrypt-prod"
   domain: ""
@@ -71,12 +70,12 @@ ingress:
 
 dummyservice:
   secret:
-    clientSecret: "<path:essential-services/data/dummy-service#clientSecret>"
-    portalurl: "<path:essential-services/data/dummy-service#portal-url>"
-    clientId: "<path:essential-services/data/dummy-service#clientId>"
-    authServerUrl: "<path:essential-services/data/dummy-service#auth-server-url>"
-    realm: "<path:essential-services/data/dummy-service#realm>"
-    resource: "<path:essential-services/data/dummy-service#resource>"
+    clientSecret: ""
+    portalurl: ""
+    clientId: ""
+    authServerUrl: ""
+    realm: ""
+    resource: ""
     
 resources:
   limits:
