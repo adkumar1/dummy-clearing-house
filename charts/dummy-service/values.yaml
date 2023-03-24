@@ -67,21 +67,29 @@ ingress:
       hosts:
         - dummy.dev.demo.catena-x.net
 
-
 dummy-service:
   secret:
+    portalurl: "<path:essential-services/data/dummy-service#portal-url>"
+    clientId: "<path:essential-services/data/dummy-service#clientId>"
+    clientSecret: "<path:essential-services/data/dummy-service#clientSecret>"
+    authServerUrl: "<path:essential-services/data/dummy-service#auth-server-url>"
+    realm: "<path:essential-services/data/dummy-service#realm>"
+    resource: "<path:essential-services/data/dummy-service#resource>"
+
+#dummy-service:
+#  secret:
     # -- JWK Set URI
-    portalurl: ""
+#    portalurl: ""
     # -- Custodian wallet client id
-    clientId: ""
+#    clientId: ""
     # -- Custodian wallet client secret
-    clientSecret: ""
+#    clientSecret: ""
     # -- Keycloak URL
-    authServerUrl: ""
+#    authServerUrl: ""
     # -- Keycloak Realm detail
-    realm: ""
+#    realm: ""
     # -- Keycloak Resource detail
-    resource: ""
+#    resource: ""
 
     
 resources:
