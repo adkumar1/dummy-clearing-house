@@ -24,7 +24,11 @@ ingress:
 dummyservice:
   secret:
     clientSecret: "<path:essential-services/data/dummy-service#clientSecret>"
-
+    portalurl: "<path:essential-services/data/dummy-service#portal-url>"
+    clientId: "<path:essential-services/data/dummy-service#clientId>"
+    authServerUrl: "<path:essential-services/data/dummy-service#auth-server-url>"
+    realm: "<path:essential-services/data/dummy-service#realm>"
+    resource: "<path:essential-services/data/dummy-service#resource>"
 
 # -- Pod resources requests and limits configuration
 resources:
