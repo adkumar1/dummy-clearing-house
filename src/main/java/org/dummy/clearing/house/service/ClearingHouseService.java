@@ -3,7 +3,6 @@ package org.dummy.clearing.house.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.dummy.clearing.house.api.ApiApiDelegate;
-import org.dummy.clearing.house.model.VerifiableCredentialDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -16,6 +15,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.TemporalAmount;
 import java.time.temporal.TemporalUnit;
+import java.util.Map;
 
 @Service
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
@@ -31,14 +31,12 @@ public class ClearingHouseService implements ApiApiDelegate {
 
     @SuppressWarnings("unchecked")
     public ResponseEntity<Void> apiCredentialsPost(
-            VerifiableCredentialDto verifiableCredentialDto,
+            Map<String, Object> verifiableCredentialDto,
             String externalId) {
 
         taskScheduler.schedule(() -> portalService.sendDataToPortal(verifiableCredentialDto, externalId), Instant.now().plus(Duration.ofSeconds(60)));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-
-
 
 
 }
