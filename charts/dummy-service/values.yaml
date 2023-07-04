@@ -44,8 +44,7 @@ service:
 
 
 ingress:
-ingress:
-  enabled: true
+  enabled: false
   className: "nginx"
   issuer: "letsencrypt-prod"
   domain: ""
@@ -68,6 +67,15 @@ ingress:
         - dummy.dev.demo.catena-x.net
 
 
+
+dummyservice:
+  secret:
+    clientSecret: ""
+    portalurl: ""
+    clientId: ""
+    authServerUrl: ""
+    realm: ""
+    resource: ""
     
 resources:
   limits:
