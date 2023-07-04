@@ -41,10 +41,15 @@ public class PortalService {
         PortalDto portalDto = createPortalRequestObejct(externalId,
                 verifiableCredentialDto,
                 complianceJsonLoader.getComplianceServiceJson());
-
         ResponseEntity<String> res;
-        res = portalProxy.postPortalLegalPersonResponse(portalDto, token);
-        log.info("Response from portal: "+ res.getStatusCode());
+        List<Object> typeList = (List<Object>) verifiableCredentialDto.get("type");
+        if  (typeList.contains("LegalPerson")) {
+            res = portalProxy.postPortalLegalPersonResponse(portalDto, token);
+            log.info("Response from portal: " + res.getStatusCode());
+        } else if (typeList.contains("ServiceOffering")) {
+            res = portalProxy.postPortalServiceOfferingResponse(portalDto, token);
+            log.info("Response from portal: " + res.getStatusCode());
+        }
 
     }
 
