@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.extern.slf4j.Slf4j;
 import org.dummy.clearing.house.dto.PortalDto;
-import org.dummy.clearing.house.model.VerifiableCredentialDto;
 import org.dummy.clearing.house.proxy.PortalProxy;
 import org.keycloak.admin.client.token.TokenManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -31,7 +33,7 @@ public class PortalService {
     private ObjectMapper mapper;
 
 
-    public void sendDataToPortal(VerifiableCredentialDto verifiableCredentialDto,
+    public void sendDataToPortal(Map<String, Object> verifiableCredentialDto,
                                  String externalId) {
         // Send response back to Portal using feign
         String token = "Bearer "+tokenManager.getAccessTokenString();
@@ -40,18 +42,14 @@ public class PortalService {
                 verifiableCredentialDto,
                 complianceJsonLoader.getComplianceServiceJson());
 
-        ResponseEntity<String> res = null;
-        if(verifiableCredentialDto.getType().contains("LegalPerson")) {
-            res = portalProxy.postPortalLegalPersonResponse(portalDto, token);
-            log.info("Response from portal: "+ res.getStatusCode());
-        } else if(verifiableCredentialDto.getType().contains("ServiceOffering")) {
-            res = portalProxy.postPortalServiceOfferingResponse(portalDto, token);
-            log.info("Response from portal: "+ res.getStatusCode());
-        }
+        ResponseEntity<String> res;
+        res = portalProxy.postPortalLegalPersonResponse(portalDto, token);
+        log.info("Response from portal: "+ res.getStatusCode());
+
     }
 
     private PortalDto createPortalRequestObejct(String externalId,
-                                                VerifiableCredentialDto verifiableCredentialDto,
+                                                Map<String, Object> verifiableCredentialDto,
                                                 JsonNode complianceJsonNode) {
         String sdDocumentDtoString = "";
         try {
