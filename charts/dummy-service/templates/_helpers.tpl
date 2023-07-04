@@ -51,6 +51,15 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
+Create name of application secret
+*/}}
+{{- define "dummy-service.applicationSecret.name" -}}
+{{- printf "%s-application" (include "dummy-service.fullname" .) }}
+{{- end }}
+
+
+
+{{/*
 Create the name of the service account to use
 */}}
 {{- define "dummy-service.serviceAccountName" -}}
