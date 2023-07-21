@@ -43,7 +43,7 @@ public class PortalService {
                 complianceJsonLoader.getComplianceServiceJson());
         ResponseEntity<String> res;
         List<Object> typeList = (List<Object>) verifiableCredentialDto.get("type");
-        if  (typeList.contains("LegalPerson")) {
+        if  (typeList.contains("LegalParticipant")) {
             res = portalProxy.postPortalLegalPersonResponse(portalDto, token);
             log.info("Response from portal: " + res.getStatusCode());
         } else if (typeList.contains("ServiceOffering")) {
